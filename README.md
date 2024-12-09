@@ -1,7 +1,5 @@
 # LangChain-ChatBot
 
-# LangChain Hands-On Tutorial
-
 This repository contains a Python script `langchain_hands_on.py`, which serves as a hands-on tutorial for demonstrating the capabilities of the LangChain library in conjunction with OpenAI's language models. It showcases various advanced features including conversation management, document embedding, retrieval-based question answering, and integrating external APIs for expanded functionalities.
 
 ## Features

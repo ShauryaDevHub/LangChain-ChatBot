@@ -1,31 +1,170 @@
-# LangChain-ChatBot
+# Student-Landlord Lease Advisor
 
-This repository contains a Python script `langchain_hands_on.py`, which serves as a hands-on tutorial for demonstrating the capabilities of the LangChain library in conjunction with OpenAI's language models. It showcases various advanced features including conversation management, document embedding, retrieval-based question answering, and integrating external APIs for expanded functionalities.
+An AI-powered application that simplifies lease document analysis and enables conversational querying. Built using **Streamlit**, **LangChain**, and other cutting-edge AI technologies, this tool allows users to upload lease agreements in PDF format, extract relevant information, and query the document interactively.
+
+---
+
+## Table of Contents
+1. [Features](#features)
+2. [Tech Stack](#tech-stack)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Architecture](#architecture)
+6. [Key Functions](#key-functions)
+7. [Future Scope](#future-scope)
+8. [Contributing](#contributing)
+9. [License](#license)
+
+---
 
 ## Features
 
-- **Language Model Interaction**: Demonstrates how to instantiate and use OpenAI's GPT models for generating text based on specific prompts.
-- **Prompt Management**: Utilizes LangChain's prompt templates for dynamic text generation tasks.
-- **Conversation Chains**: Implements conversation chains for managing ongoing dialogues with language models.
-- **Document Embedding and Retrieval**: Showcases how to create document embeddings using OpenAI's models and store/retrieve them using DeepLake.
-- **Retrieval-Based QA**: Implements a retrieval-based question answering system combining language models with document retrieval.
-- **External API Integration**: Demonstrates integrating Google Search API for real-time information retrieval and response generation.
+- **PDF Upload and Processing:**
+  - Extract text from lease agreements using PyPDF2.
+- **Text Chunking:**
+  - Split large text into manageable chunks with LangChain.
+- **Semantic Search:**
+  - Embed text using OpenAI embeddings and index them using FAISS.
+- **Conversational Interface:**
+  - Ask questions about the uploaded documents and get accurate answers.
+- **Memory Integration:**
+  - Retains context across queries for seamless conversations.
+
+---
+
+## Tech Stack
+
+- **Frontend:** Streamlit
+- **Backend:** Python
+- **AI Framework:** LangChain
+- **Text Processing:** PyPDF2
+- **Vectorization:** OpenAI Embeddings, FAISS
+- **Conversational AI:** ChatOpenAI, HuggingFaceHub (optional)
+
+---
 
 ## Installation
 
-Before running the script, ensure you have Python 3.6+ installed. Then, clone this repository and install the required dependencies:
+### Prerequisites
+- Python 3.8 or higher
+- OpenAI API key (if using OpenAI embeddings or ChatOpenAI)
+- HuggingFace API key (if using HuggingFaceHub)
 
-```bash
-git clone https://github.com/yourusername/langchain-hands-on.git
-cd langchain-hands-on
-pip install -r requirements.txt
+### Steps
 
-Make sure you have the necessary API keys and tokens set as environment variables:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/lease-advisor.git
+   cd lease-advisor
+   ```
 
-    OpenAI API Key (OPENAI_API_KEY)
-    Activeloop Token (ACTIVELOOP_TOKEN)
-    Google API Key and Custom Search Engine ID (GOOGLE_API_KEY, GOOGLE_CSE_ID)
+2. **Set up a virtual environment:**
+   ```bash
+   python -m venv env
+   source env/bin/activate  # On Windows: env\Scripts\activate
+   ```
 
-Contributing
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Contributions are welcome! If you'd like to improve the script or add more examples, please feel free to fork the repository and submit a pull request.
+4. **Configure environment variables:**
+   - Create a `.env` file in the project root and add your API keys:
+     ```
+     OPENAI_API_KEY=your_openai_api_key
+     HUGGINGFACE_API_KEY=your_huggingface_api_key
+     ```
+
+5. **Run the application:**
+   ```bash
+   streamlit run app.py
+   ```
+
+---
+
+## Usage
+
+1. **Upload Documents:**
+   - Use the sidebar to upload one or more lease agreements in PDF format.
+   
+2. **Process Documents:**
+   - Click on the **Process** button to extract text and index the document.
+
+3. **Ask Questions:**
+   - Use the input box to ask questions about the uploaded document, such as:
+     - *What is the termination clause in my lease?*
+     - *What are the penalties for early termination?*
+
+4. **Interactive Responses:**
+   - Receive context-aware responses powered by LangChain's conversational AI.
+
+---
+
+## Architecture
+
+1. **User Interaction (Frontend):**
+   - Built using Streamlit for real-time document upload and querying.
+
+2. **Backend Processing:**
+   - Extract text from PDFs using PyPDF2.
+   - Split text into manageable chunks with LangChain's `CharacterTextSplitter`.
+
+3. **Semantic Search:**
+   - Embed text using OpenAI embeddings.
+   - Store and query embeddings using FAISS.
+
+4. **Conversational AI:**
+   - LangChain's `ConversationalRetrievalChain` enables context-aware Q&A.
+
+---
+
+## Key Functions
+
+- **PDF Text Extraction:**
+  Extracts text from uploaded PDF documents.
+  ```python
+  def get_pdf_text(pdf_docs):
+      ...
+  ```
+
+- **Text Chunking:**
+  Splits text into smaller chunks for embedding.
+  ```python
+  def get_text_chunks(text):
+      ...
+  ```
+
+- **Embedding and Indexing:**
+  Generates semantic embeddings and creates a searchable vector store.
+  ```python
+  def get_vectorstore(text_chunks):
+      ...
+  ```
+
+- **Conversational Retrieval:**
+  Integrates LangChain for context-aware Q&A.
+  ```python
+  def get_conversation_chain(vectorstore):
+      ...
+  ```
+
+---
+
+## Future Scope
+
+- Support for multilingual lease agreements.
+- Enhanced summarization of key lease terms.
+- Domain-specific fine-tuning for real estate legal documents.
+- Mobile-friendly interface and app integration.
+- Analytics dashboard for document insights.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+Let me know if you'd like additional customization or sections in the README!
